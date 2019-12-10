@@ -1,0 +1,23 @@
+git branch - lista gałęzi
+git fetch --all pobranie zdalnych gałęzi
+git branch --all wyświetlenie lokalnych i zdalnych gałęzi
+git branch <nazwa gałęzi> - stworzenie nowej
+git branch -d <nazwa gałęzi> - usunięcie gałęzi
+git checkout <nazwa gałęzi> - zmiana gałęzi
+git checkout -b <nazwa gałęzi> - stworzenie nowej i zmiana gałęzi
+git push origin <nazwa gałęzi> - pushowanie nie do mastera
+git push -u origin <nazwa gałęzi> - ustawienie gałęzi jako głównej w celu używania komendy git push
+
+Przechodzimy na develop
+git merge <nazwa gałęzi, którą chcemy scalić>
+
+
+Rozwiązywanie problemów z css i zmiennymi na branchach.
+https://www.nafrontendzie.pl/metodyki-css-2-bem
+http://javascript-html5-tutorial.pl/styl-konwencje-i-struktura-css-sass-oocss-bem-rscss-smacss-omg.html
+
+Local storage
+https://www.competa.com/blog/storing-javascript-object-localstorage/
+
+Local storage. Problem z pamięcią
+https://www.chromium.org/for-testers/bug-reporting-guidelines/uncaught-securityerror-failed-to-read-the-localstorage-property-from-window-access-is-denied-for-this-document
