@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 
 const HomeHeader = props => {
   return (
-    <header>
+    <header id="start">
       <div className="header__image"></div>
       <div className="header__content">
         <div className="header__content--top-menu">
