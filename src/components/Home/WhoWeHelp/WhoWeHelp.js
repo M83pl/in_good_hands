@@ -2,8 +2,8 @@ import React from "react";
 
 const WhoWeHelp = () => {
   return (
-    <section className="simple-steps" id="whats_about">
-      Simple steps
+    <section className="who-we-help" id="funds_orgs">
+      Who we help
     </section>
   );
 };

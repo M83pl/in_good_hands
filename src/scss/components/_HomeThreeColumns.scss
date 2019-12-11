@@ -1,5 +1,9 @@
 .three-columns {
   background-color: $three-columns-background;
-  height: 384px;
-  margin-bottom: 55px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-top: 46px;
+  padding-bottom: 86px;
 }

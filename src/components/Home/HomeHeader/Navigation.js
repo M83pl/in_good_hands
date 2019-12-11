@@ -3,7 +3,8 @@ import { Link as LinkScroll } from "react-scroll";
 
 const options = {
   activeClass: "active",
-  duration: 1000
+  duration: 1000,
+  smooth: "easeInOutQuad"
 };
 
 const Navigation = () => {
