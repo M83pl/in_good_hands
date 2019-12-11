@@ -1,0 +1,23 @@
+.header__login-register {
+  width: 100%;
+  margin-bottom: 12px;
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+      float: right;
+      font-size: 12px;
+      margin-right: 40px;
+      padding: 6px 8px;
+
+      a {
+        text-decoration: none;
+        &:visited {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

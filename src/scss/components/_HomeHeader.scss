@@ -1,4 +1,41 @@
 header {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: auto;
+}
+
+.header__image {
+  width: 72vw;
+  height: 50vw;
+  position: relative;
+  top: 0px;
+  left: -25vw;
+  background: transparent url("../../assets/img/Home-Hero-Image.jpg") 0% 0%
+    no-repeat padding-box;
+  background-size: contain;
+  opacity: 1;
+}
+
+.header__content {
+  padding-right: 5vw;
+  padding-top: 2vw;
+}
+
+.header__content--top-menu {
   width: 100%;
-  height: 963px;
+}
+
+.header__content--content {
+  text-align: center;
+  font: Regular 38px/55px Open Sans;
+  letter-spacing: -0.76px;
+  color: #3c3c3c;
+  opacity: 1;
+}
+
+.header__content--decoration {
+  background: transparent url("../../assets/Decoration.svg") 0% 0% no-repeat
+    padding-box;
+  height: 35px;
 }

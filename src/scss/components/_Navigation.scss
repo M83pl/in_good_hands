@@ -1,0 +1,14 @@
+.header__nav {
+  ul {
+    list-style: none;
+    width: 100%;
+
+    li {
+      display: inline-block;
+      float: right;
+      font-size: 12px;
+      margin-right: 40px;
+      padding: 6px 15px;
+    }
+  }
+}

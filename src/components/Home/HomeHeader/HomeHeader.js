@@ -1,24 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Link as LinkScroll } from "react-scroll";
 
-const options = {
-  activeClass: "active",
-  duration: 1000
-};
+import LoginRegister from "./LoginRegister";
+import Navigation from "./Navigation";
 
-const HomeHeader = () => {
+const HomeHeader = props => {
   return (
     <header>
-      <Link to="/logowanie">Logowanie</Link>
-      <Link to="/rejestracja">Rejestracja</Link>
-      <ul>
-        <li>
-          <LinkScroll to="contact" {...options}>
-            Kontakt
-          </LinkScroll>
-        </li>
-      </ul>
+      <div className="header__image"></div>
+      <div className="header__content">
+        <div className="header__content--top-menu">
+          <LoginRegister userName={props.userName} />
+          <Navigation />
+        </div>
+        <div className="header__content--content">
+          <p>Zacznij pomagać!</p>
+          <p>Oddaj niechciane rzeczy w zaufane ręce</p>
+          <div className="header__content--decoration"></div>
+        </div>
+      </div>
     </header>
   );
 };
