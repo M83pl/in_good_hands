@@ -3,20 +3,27 @@
   margin-bottom: 12px;
 
   ul {
+    display: flex;
+    flex-direction: row;
     list-style: none;
+    justify-items: right;
+    width: 100%;
 
     li {
-      display: inline-block;
-      float: right;
+      color: $login-register-color;
       font-size: 12px;
-      margin-right: 40px;
+      margin-left: 40px;
       padding: 6px 8px;
 
       a {
         text-decoration: none;
         &:visited {
-          text-decoration: none;
+          color: $login-register-color;
         }
+      }
+
+      &:last-of-type {
+        border: 0.75px solid $three-columns-background;
       }
     }
   }

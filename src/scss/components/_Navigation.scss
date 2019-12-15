@@ -1,13 +1,13 @@
 .header__nav {
   ul {
+    display: flex;
+    flex-direction: row;
     list-style: none;
     width: 100%;
 
     li {
-      display: inline-block;
-      float: right;
       font-size: 12px;
-      margin-right: 40px;
+      margin-left: 40px;
       padding: 6px 15px;
     }
   }

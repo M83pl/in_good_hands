@@ -1,14 +1,11 @@
 @import "./settings/font.scss";
 @import "./settings/colors.scss";
 
-@import "./components/HomeHeader.scss";
 @import "./components/LoginRegister.scss";
 @import "./components/Navigation.scss";
 @import "./components/HomeThreeColumns.scss";
 @import "./components/HTCMessageBox.scss";
 @import "./components/WhoWeHelp.scss";
-@import "./components/Contact.scss";
-@import "./components/Footer.scss";
 
 * {
   margin: 0 auto;
@@ -24,6 +21,7 @@
 }
 
 body {
+  color: $main-text-color;
   box-sizing: border-box;
   background-color: #fff;
   font-family: $font-base, $font-alt, serif;
