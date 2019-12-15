@@ -37,10 +37,11 @@ const useStyles = createUseStyles({
   },
   aboutUs__content_signature: {
     backgroundImage: `url(${signature})`,
-    backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
-    width: "22%",
+    backgroundSize: "contain",
     height: "16%",
+    width: "22%",
+    marginLeft: "63%",
     marginRight: "15%"
   },
   aboutUs__image: {
