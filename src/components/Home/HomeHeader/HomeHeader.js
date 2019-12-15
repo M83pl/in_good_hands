@@ -10,31 +10,37 @@ const useStyles = createUseStyles({
   header: {
     display: "flex",
     flexDirection: "row",
-    width: "100%"
-  },
-
-  header__image: {
-    width: "45%",
-    backgroundSize: "cover",
-    backgroundPosition: -270,
+    width: "100%",
+    backgroundSize: "contain",
     backgroundImage: `url(${urlImage})`,
+    backgroundPosition: -270,
     backgroundRepeat: "no-repeat"
   },
 
+  // header__image: {
+  //   width: "45%",
+  //   backgroundSize: "cover",
+  //   backgroundPosition: -270,
+  //   backgroundImage: `url(${urlImage})`,
+  //   backgroundRepeat: "no-repeat"
+  // },
+
   header__content: {
-    paddingRight: "5%",
-    width: "55%",
+    marginRight: "7.5%",
+    width: "100%",
     display: "flex",
     flexDirection: "column"
   },
 
   header__content_top_menu: {
+    float: "right",
     width: "100%",
     display: "flex",
     flexDirection: "column"
   },
 
   header__content_main: {
+    right: "15%",
     textAlign: "center",
     marginTop: "200px",
     marginBottom: "200px"
@@ -53,7 +59,6 @@ const HomeHeader = props => {
 
   return (
     <header id="start" className={classes.header}>
-      <div className={classes.header__image}></div>
       <div className={classes.header__content}>
         <div className={classes.header__content_top_menu}>
           <LoginRegister userName={props.userName} />

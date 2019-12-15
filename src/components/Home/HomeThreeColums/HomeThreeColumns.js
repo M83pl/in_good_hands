@@ -23,7 +23,7 @@ const HomeThreeColumns = () => {
     }
   ];
   return (
-    <section className="three-columns" id="whats_about">
+    <section className="three-columns">
       {dataToRender.map((item, index) => {
         return (
           <HTCMessageBox
