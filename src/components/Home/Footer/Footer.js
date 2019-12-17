@@ -5,6 +5,7 @@ import instagramIcon from "../../../assets/Instagram.svg";
 
 const useStyles = createUseStyles({
   footer: {
+    textAlign: "center",
     padding: "22px 0px",
     width: "100%",
     fontSize: "18px",
@@ -28,15 +29,19 @@ const useStyles = createUseStyles({
       content: `url(${instagramIcon})`,
       right: 142
     }
+  },
+  footer__text: {
+    textAlign: "center",
+    width: "100%"
   }
 });
 
 const Footer = () => {
   const classes = useStyles();
   return (
-    <section className={classes.footer}>
-      <div>Copy rights by Coders Lab</div>
-    </section>
+    <footer className={classes.footer}>
+      <div className={classes.footer__text}>Copy rights by Coders Lab</div>
+    </footer>
   );
 };
 

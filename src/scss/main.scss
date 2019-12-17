@@ -1,14 +1,8 @@
 @import "./settings/font.scss";
 @import "./settings/colors.scss";
 
-@import "./components/LoginRegister.scss";
-@import "./components/Navigation.scss";
-@import "./components/HomeThreeColumns.scss";
-@import "./components/HTCMessageBox.scss";
-@import "./components/WhoWeHelp.scss";
-
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0px;
 
   &:before {

@@ -2,29 +2,32 @@ import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 
 import contactBackgroundImage from "../../../assets/img/Background-Contact-Form.jpg";
+import decoration from "../../../assets/Decoration.svg";
 
 const useStyles = createUseStyles({
   contact: {
     display: "flex",
     flexDirection: "row",
-
-    "&:after": {
-      content: "",
-      backgroundImage: `url(${contactBackgroundImage})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "contain",
-      opacity: 0.5,
-      position: "absolute",
-      zIndex: -1
-    }
+    backgroundImage: `url(${contactBackgroundImage})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    opacity: 0.5
   },
 
   contact__form: {
-    marginRight: 142,
-    marginLeft: `{100%-528-142}`,
-    width: 528,
+    width: "28%",
     display: "flex",
     flexDirection: "column"
+  },
+
+  contact__form_title: {
+    width: "19%"
+  },
+  contact__form_title_decoration: {
+    width: "13%",
+    backgroundImage: `url(${decoration})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain"
   },
 
   contact__form_user_data: {
@@ -32,17 +35,13 @@ const useStyles = createUseStyles({
     flexDirection: "row"
   },
   contact__form_user_data_input: {
+    display: "block",
     width: "256px"
   },
 
   contact__form_user_data_label: {
     fontSize: "16px",
     display: "block"
-  },
-
-  div: {
-    display: "flex",
-    flexDirection: "column"
   },
 
   contact__form_user_message: {
@@ -66,12 +65,16 @@ const useStyles = createUseStyles({
 
 const Contact = () => {
   const classes = useStyles();
-  const [formName, setFormName] = useState("imię");
-  const [formMail, setFormMail] = useState("em@il");
-  const [formMessage, setFormMessage] = useState("Twoja wiadomość");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
 
   return (
     <section className={classes.contact} id="contact">
+      <div className={classes.contact__form_title}>Skontaktuj się z nami</div>
+      <div className={classes.contact__form_title_decoration}></div>
       <form className={classes.contact__form}>
         <div className={classes.contact__form_user_data}>
           <label className={classes.contact__form_user_data_label}>
@@ -80,9 +83,9 @@ const Contact = () => {
           <input
             className={classes.contact__form_user_data_input}
             type="text"
-            value={formName}
+            value={form.name}
             onChange={event => {
-              setFormName(event.target.value);
+              setForm({ ...form, ...{name: event.target.value}  });
             }}
           />
           <label className={classes.contact__form_user_data_label}>
@@ -91,9 +94,9 @@ const Contact = () => {
           <input
             className={classes.contact__form_user_data_input}
             type="email"
-            value={formMail}
+            value={form.email}
             onChange={event => {
-              setFormMail(event.target.value);
+              setForm({ email: event.target.value });
             }}
           />
         </div>
@@ -104,9 +107,9 @@ const Contact = () => {
           <input
             className={classes.contact__form_user_message_input}
             type="text-area"
-            value={formMessage}
+            value={form.message}
             onChange={event => {
-              setFormMessage(event.target.value);
+              setForm({ message: event.target.value });
             }}
           />
         </div>

@@ -1,7 +1,17 @@
 import React from "react";
+import { createUseStyles } from "react-jss";
+import Header from "../Header/Header";
 
-const Register = () => {
-  return <h1>Register component</h1>;
+const useStyles = createUseStyles({});
+
+const Register = props => {
+  const classes = useStyles();
+  return (
+    <>
+      <Header user={props.user}/>
+      <section className={classes.register}>Register component</section>
+    </>
+  );
 };
 
 export default Register;

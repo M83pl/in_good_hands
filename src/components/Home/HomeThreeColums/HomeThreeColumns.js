@@ -1,7 +1,22 @@
 import React from "react";
+import { createUseStyles } from "react-jss";
 import HTCMessageBox from "./HTCMessageBox";
+import { threeColumnsBackground } from "../../../scss/settings/colors";
+
+const useStyles = createUseStyles({
+  threeColumns: {
+    backgroundColor: `${threeColumnsBackground}`,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    paddingTop: "46px",
+    paddingBottom: "86px"
+  }
+});
 
 const HomeThreeColumns = () => {
+  const classes = useStyles();
   const dataToRender = [
     {
       number: "10",
@@ -23,7 +38,7 @@ const HomeThreeColumns = () => {
     }
   ];
   return (
-    <section className="three-columns">
+    <section className={classes.threeColumns}>
       {dataToRender.map((item, index) => {
         return (
           <HTCMessageBox

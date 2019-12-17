@@ -19,18 +19,19 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    marginTop: 55,
-    marginBottom: 80
+    paddingTop: "3.4375rem",
+    paddingBottom: "5rem"
   },
 
   simpleSteps__title: {
     width: "100%",
-    fontSize: 38,
+    fontSize: "2.375rem",
     textAlign: "center",
     marginBottom: 25
   },
 
   simpleSteps__decoration: {
+    alignSelf: "center",
     backgroundImage: `url(${decoration})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain",
@@ -54,12 +55,13 @@ const useStyles = createUseStyles({
   },
 
   simpleSteps__link: {
+    alignSelf: "center",
     boxSizing: "border-box",
-    marginTop: 35,
-    padding: "13px 93px 13px 93px",
-    width: 310,
-    height: 120,
-    fontSize: 36,
+    marginTop: "2.1875rem",
+    padding: "1rem 6‬rem",
+    width: "19.375rem",
+    height: "7.5rem",
+    fontSize: "2.25rem",
     border: "0.75px solid #3C3C3C",
     textAlign: "center",
     textDecoration: "none",

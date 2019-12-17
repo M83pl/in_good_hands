@@ -23,6 +23,7 @@ const useStyles = createUseStyles({
     fontSize: 38
   },
   aboutUs__content_decoration: {
+    margin: "auto",
     backgroundImage: `url(${decoration})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",

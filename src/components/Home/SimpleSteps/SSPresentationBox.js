@@ -1,15 +1,14 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 
-
 const useStyles = createUseStyles({
   sspresentationBox: {
     width: 131
   },
 
   sspresentationBox__icon: {
-    width: 83,
-    height: 83,
+    width: "5rem",
+    height: "5rem",
     margin: "0px 24px 8px 24px",
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain"
@@ -17,19 +16,19 @@ const useStyles = createUseStyles({
 
   sspresentationBox__title: {
     width: "100%",
-    fontSize: 18,
-    textAlign: "center",
-    marginBottom: 10
+    fontSize: "1.125rem",
+    textAlign: "center"
   },
 
   sspresentationBox__line: {
-    width: 70,
-    marginBottom: 10
+    width: "4.375rem‬",
+    marginTop: "0.5rem",
+    marginBottom: "0.5rem"
   },
 
   sspresentationBox__paragraph: {
     width: "100%",
-    fontSize: "16px",
+    fontSize: "1rem",
     textAlign: "center"
   }
 });
