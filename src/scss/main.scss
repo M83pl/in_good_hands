@@ -1,12 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Merriweather|Open+Sans&display=swap");
 @import "./settings/font.scss";
 @import "./settings/colors.scss";
 
-@import "./components/HomeHeader.scss";
-@import "./components/HomeThreeColumns.scss";
-
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0px;
 
   &:before {
@@ -19,8 +15,9 @@
 }
 
 body {
+  color: $main-text-color;
   box-sizing: border-box;
   background-color: #fff;
-  font-family: $font-base $font-alt, serif;
+  font-family: $font-base, $font-alt, serif;
   max-width: 1900px;
 }
