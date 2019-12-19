@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 const useStyles = createUseStyles({
   header: {
     float: "right",
-    width: "50%",
+    width: "40%",
     dispaly: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
