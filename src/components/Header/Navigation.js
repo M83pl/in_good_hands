@@ -1,7 +1,8 @@
 import React from "react";
-import { Link as LinkScroll, scrollSpy } from "react-scroll";
+import { Link as LinkScroll } from "react-scroll";
 import { createUseStyles } from "react-jss";
 import { threeColumnsBackground } from "../../scss/settings/colors";
+import { useLocation, useHistory } from "react-router-dom";
 
 const useStyles = createUseStyles({
   active: {
@@ -29,8 +30,11 @@ const useStyles = createUseStyles({
   }
 });
 
-const Navigation = () => {
+const Navigation = props => {
   const classes = useStyles();
+  const location = useLocation();
+  const history = useHistory();
+
   const options = {
     activeClass: classes.active,
     duration: 1000,
@@ -39,47 +43,38 @@ const Navigation = () => {
     className: classes.header__nav_list_item
   };
 
+  const handleNav = () => {
+    if (location.pathname !== "/") {
+      history.push("/");
+    }
+  };
+  console.log(location);
+  console.log(history);
   return (
     <nav className={classes.header__nav}>
       <ul className={classes.header__nav_list}>
         <li>
-          <LinkScroll to="start" {...options}>
+          <LinkScroll to="start" {...options} onClick={handleNav}>
             Start
           </LinkScroll>
         </li>
         <li>
-          <LinkScroll
-            to="whats_about"
-            {...options}
-            className={classes.header__nav_list_item}
-          >
+          <LinkScroll to="whats_about" {...options} onClick={handleNav}>
             O co chodzi?
           </LinkScroll>
         </li>
         <li>
-          <LinkScroll
-            to="about_us"
-            {...options}
-            className={classes.header__nav_list_item}
-          >
+          <LinkScroll to="about_us" {...options} onClick={handleNav}>
             O nas
           </LinkScroll>
         </li>
         <li>
-          <LinkScroll
-            to="funds_orgs"
-            {...options}
-            className={classes.header__nav_list_item}
-          >
+          <LinkScroll to="funds_orgs" {...options} onClick={handleNav}>
             Fundacja i organizacje
           </LinkScroll>
         </li>
         <li>
-          <LinkScroll
-            to="contact"
-            {...options}
-            className={classes.header__nav_list_item}
-          >
+          <LinkScroll to="contact" {...options} onClick={handleNav}>
             Kontakt
           </LinkScroll>
         </li>
