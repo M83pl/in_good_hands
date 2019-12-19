@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     marginTop: "1.5rem",
-    marginBottom: "4rem"
+    marginBottom: "2rem"
   },
   start__content_buttons: {
     width: "100%",
@@ -59,7 +59,6 @@ const useStyles = createUseStyles({
     textAlign: "center",
     fontSize: "1.5rem",
     width: "10rem",
-    height: "5rem",
     border: `0.75px solid ${mainTextColor}`,
     padding: "0.8rem 2rem",
 
