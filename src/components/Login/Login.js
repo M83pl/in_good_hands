@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
-import Header from "../Header/Header";
+import { useHistory } from "react-router-dom";
 
+import Header from "../Header/Header";
 import urlDecoration from "../../assets/Decoration.svg";
 import {
   sectionsBackground,
@@ -86,6 +87,7 @@ const useStyles = createUseStyles({
 const Login = props => {
   const classes = useStyles();
   const [login, setLogin] = useState({ email: "", password: "" });
+  const history = useHistory();
   return (
     <>
       <Header user={props.user} />
@@ -114,7 +116,12 @@ const Login = props => {
             ></input>
           </form>
           <div className={classes.login__box_buttons}>
-            <button className={classes.login__box_buttons_button}>
+            <button
+              className={classes.login__box_buttons_button}
+              onClick={() => {
+                history.push("/rejestracja");
+              }}
+            >
               Załóż konto
             </button>
             <button
