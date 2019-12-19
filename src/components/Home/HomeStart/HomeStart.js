@@ -1,7 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 
-// import Header from "../../Header/Header";
 import urlImage from "../../../assets/img/Home-Hero-Image.jpg";
 import urlDecoration from "../../../assets/Decoration.svg";
 
@@ -9,7 +8,10 @@ const useStyles = createUseStyles({
   start: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "flex-end",
     width: "100%",
+    minHeight: "100vh",
+    margintop: "-5.5rem",
     backgroundSize: "contain",
     backgroundImage: `url(${urlImage})`,
     backgroundPosition: -270,
@@ -17,16 +19,10 @@ const useStyles = createUseStyles({
   },
   start__content: {
     paddingRight: "7.5%",
-    width: "100%",
+    width: "50%",
     display: "flex",
-    flexDirection: "column"
-  },
-
-  start__content_top_menu: {
-    float: "right",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    justifyContent: "center"
   },
 
   start__content_main: {
@@ -37,7 +33,6 @@ const useStyles = createUseStyles({
   },
 
   start__content_decoration: {
-    justifyContent: "center",
     backgroundImage: `url(${urlDecoration})`,
     height: "35px",
     backgroundRepeat: "no-repeat"
@@ -50,11 +45,9 @@ const HomeStart = props => {
   return (
     <section id="start" className={classes.start}>
       <div className={classes.start__content}>
-        <div className={classes.start__content_main}>
-          <p>Zacznij pomagać!</p>
-          <p>Oddaj niechciane rzeczy w zaufane ręce</p>
-          <div className={classes.start__content_decoration}></div>
-        </div>
+        <p>Zacznij pomagać!</p>
+        <p>Oddaj niechciane rzeczy w zaufane ręce</p>
+        <div className={classes.start__content_decoration} />
       </div>
     </section>
   );

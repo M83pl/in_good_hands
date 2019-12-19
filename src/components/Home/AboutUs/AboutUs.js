@@ -9,7 +9,8 @@ const useStyles = createUseStyles({
   aboutUs: {
     width: "100%",
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    minHeight: "100vh"
   },
   aboutUs__content: {
     width: "50%"
@@ -47,7 +48,7 @@ const useStyles = createUseStyles({
   },
   aboutUs__image: {
     width: "50vw",
-    height: "50vw",
+    nimHeight: "100vh",
     backgroundImage: `url(${aboutBackgrond})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat"
