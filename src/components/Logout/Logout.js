@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { createUseStyles } from "react-jss";
 import { useHistory } from "react-router-dom";
 
 import Header from "../Header/Header";
 import urlDecoration from "../../assets/Decoration.svg";
 import {
-  sectionsBackground,
   threeColumnsBackground,
   mainTextColor
 } from "../../scss/settings/colors";
 
 const useStyles = createUseStyles({
-  login: {
+  logout: {
     width: "100%",
     height: "100vh",
     display: "flex",
@@ -20,11 +19,11 @@ const useStyles = createUseStyles({
     alignItems: "center"
   },
 
-  login__title: {
+  logout__title: {
     fontSize: "1.75rem"
   },
 
-  login__decoration: {
+  logout__decoration: {
     width: "15vw",
     backgroundImage: `url(${urlDecoration})`,
     minHeight: "2rem",
@@ -34,42 +33,7 @@ const useStyles = createUseStyles({
     marginBottom: "2rem"
   },
 
-  login__box: {
-    width: "32vw",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-
-  login__box_form: {
-    width: "20vw",
-    backgroundColor: `${sectionsBackground}`,
-    padding: "2rem 3vw 2.75rem 3vw",
-    marginBottom: "2.5rem"
-  },
-  login__box_form_label: {
-    display: "block",
-    paddingBottom: "0.5rem",
-    paddingTop: "1rem",
-    width: "100%",
-    fontSize: "1rem"
-  },
-  login__box_form_input: {
-    border: "none",
-    fontSize: "1rem",
-    paddingTop: "0.5rem",
-    width: "100%",
-    backgroundColor: "transparent",
-    borderBottom: "0.75px solid black"
-  },
-  login__box_buttons: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  login__box_buttons_button: {
+  logout__box_button: {
     border: `0.75px solid ${mainTextColor}`,
     backgroundColor: "transparent",
     width: "12vw",
@@ -88,18 +52,17 @@ const useStyles = createUseStyles({
 
 const Logout = () => {
   const classes = useStyles();
-  const [login, setLogin] = useState({ email: "", password: "" });
   const history = useHistory();
   return (
     <>
       <Header />
-      <section className={classes.login}>
-        <h1 className={classes.login__title}>
+      <section className={classes.logout}>
+        <h1 className={classes.logout__title}>
           Wylogowanie nastąpiło pomyślnie!
         </h1>
-        <div className={classes.login__decoration} />
+        <div className={classes.logout__decoration} />
         <button
-          className={classes.login__box_buttons_button}
+          className={classes.logout__button}
           onClick={() => {
             history.push("/");
           }}
