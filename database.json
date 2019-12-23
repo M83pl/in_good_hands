@@ -2,28 +2,63 @@
   "fundations": [
     {
       "name": "Fundacjom",
-      "desc": "jakis opis",
+      "desc": "W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.",
       "items": [
         {
-          "header": "to jest header",
-          "subheader": "to jest subheader",
-          "desc": "to jest desc"
+          "header": "Fundacja 1",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
         },
         {
-          "header": "to jest header",
-          "subheader": "to jest subheader",
-          "desc": "to jest desc"
+          "header": "Fundacja 2",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
         },
         {
-          "header": "to jest header",
-          "subheader": "to jest subheader",
-          "desc": "to jest desc"
+          "header": "Fundacja 3",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 4",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 5",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 6",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 7",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 8",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 9",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
+        },
+        {
+          "header": "Fundacja 10",
+          "subheader": "Czym się zajmuje fundacja",
+          "desc": "co można przekazać"
         }
       ]
     },
     {
-      "name": "Ogganizacjom",
-      "desc": "jakis opis",
+      "name": "Organizacjom",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
       "items": [
         {
           "header": "to jest header",

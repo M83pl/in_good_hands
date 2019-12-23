@@ -98,8 +98,8 @@ const useStyles = createUseStyles({
     width: "100%",
     height: "6rem",
     textAlign: "justify"
-    // textJustify: "inter-word"
   },
+
   contact__form_button: {
     backgroundColor: "transparent",
     border: `0.75px solid ${mainTextColor}`,
