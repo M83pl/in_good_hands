@@ -39,7 +39,6 @@ const useStyles = createUseStyles({
 const Footer = props => {
   const classes = useStyles();
   const contactClass = props.specialClass;
-  console.log(contactClass);
   return (
     <footer className={classes.footer + " " + contactClass}>
       <div className={classes.footer__text}>Copy rights by Coders Lab</div>

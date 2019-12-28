@@ -48,8 +48,6 @@ const Navigation = props => {
       history.push("/");
     }
   };
-  console.log(location);
-  console.log(history);
   return (
     <nav className={classes.header__nav}>
       <ul className={classes.header__nav_list}>
