@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
   },
 
   simpleSteps__title: {
-    // marginTop: "0.5rem",
+    marginTop: "0.5rem",
     width: "100%",
     fontSize: "2rem",
     textAlign: "center"
@@ -39,7 +39,6 @@ const useStyles = createUseStyles({
     backgroundSize: "contain",
     height: "2rem",
     width: "15vw"
-    // margin: "1.5rem auto"
   },
 
   simpleSteps__fourSteps: {
