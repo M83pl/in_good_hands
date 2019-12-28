@@ -7,15 +7,16 @@ const useStyles = createUseStyles({
   },
 
   sspresentationBox__icon: {
-    width: "5rem",
-    height: "5rem",
-    margin: "0px 24px 8px 24px",
+    width: "4rem",
+    height: "4rem",
+    margin: "0px auto",
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain"
   },
 
   sspresentationBox__title: {
     width: "100%",
+    marginTop: "0.25rem",
     fontSize: "1.125rem",
     textAlign: "center"
   },

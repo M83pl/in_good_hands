@@ -16,18 +16,20 @@ import icon4 from "../../../assets/icons/Icon-4.svg";
 
 const useStyles = createUseStyles({
   simpleSteps: {
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
+    justifyContent: "space-between",
     width: "100%",
-    paddingTop: "3.4375rem",
-    paddingBottom: "5rem"
+    minHeight: "100vh",
+    padding: "3rem 0rem"
   },
 
   simpleSteps__title: {
+    // marginTop: "0.5rem",
     width: "100%",
-    fontSize: "2.375rem",
-    textAlign: "center",
-    marginBottom: 25
+    fontSize: "2rem",
+    textAlign: "center"
   },
 
   simpleSteps__decoration: {
@@ -35,9 +37,9 @@ const useStyles = createUseStyles({
     backgroundImage: `url(${decoration})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain",
-    height: 33,
-    width: "13.3%",
-    marginBottom: 34
+    height: "2rem",
+    width: "15vw"
+    // margin: "1.5rem auto"
   },
 
   simpleSteps__fourSteps: {
@@ -46,10 +48,7 @@ const useStyles = createUseStyles({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingLeft: "21%",
-    paddingRight: "21%",
-    paddingTop: 73,
-    paddingBottom: 80,
+    padding: "2rem 21vw",
     width: "100%",
     backgroundColor: `${sectionsBackground}`
   },
@@ -57,18 +56,15 @@ const useStyles = createUseStyles({
   simpleSteps__link: {
     alignSelf: "center",
     boxSizing: "border-box",
-    marginTop: "2.1875rem",
-    padding: "1rem 6‬rem",
-    width: "19.375rem",
-    height: "7.5rem",
-    fontSize: "2.25rem",
-    border: "0.75px solid #3C3C3C",
-    textAlign: "center",
+    // marginTop: "2.2rem",
+    fontSize: "2rem",
+    padding: "1.25rem 1.75rem",
+    border: `0.75px solid ${mainTextColor}`,
     textDecoration: "none",
 
     "&:visited": {
-      color: "#3C3C3C",
-      textDecoration: `${mainTextColor}`
+      color: `${mainTextColor}`,
+      textDecoration: "none"
     },
     "&:hover": {
       color: `${mainTextColor}`,
