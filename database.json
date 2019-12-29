@@ -1,6 +1,7 @@
 {
   "fundations": [
     {
+      "id": 1,
       "name": "Fundacjom",
       "desc": "W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.",
       "items": [
@@ -48,15 +49,11 @@
           "header": "Fundacja 9",
           "subheader": "Czym się zajmuje fundacja",
           "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 10",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
         }
       ]
     },
     {
+      "id": 2,
       "name": "Organizacjom",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
       "items": [
@@ -93,6 +90,7 @@
       ]
     },
     {
+      "id": 3,
       "name": "Lokalnym",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
       "items": [
