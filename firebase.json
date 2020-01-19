@@ -4,7 +4,7 @@
   },
   "hosting": {
     "site": "m83-in-good-hands",
-    "public": "public",
+    "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
