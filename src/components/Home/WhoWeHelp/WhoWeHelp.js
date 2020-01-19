@@ -63,24 +63,79 @@ const useStyles = createUseStyles({
 });
 const WhoWeHelp = () => {
   const classes = useStyles();
-  const [data, setData] = useState({ id: 0, name: " ", desc: " " });
+
+  const [description, setDescription] = useState({
+    id: 0,
+    name: " ",
+    desc: " "
+  });
   const [option, setOption] = useState(1);
+  const [paginate, setPaginate] = useState({
+    page: 1,
+    limit: 3,
+    total: 0,
+    couter: 0
+  });
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const url = `http://localhost:3001/fundations/${option}`;
-    if (data.id !== option) {
-      fetch(url, {
-        method: "GET"
-      })
-        .then(resp => {
-          return resp.json();
+    const url1 = `http://localhost:3001/descriptions/${option}`;
+
+    if (description.id !== option) {
+      fetch(url1, {})
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Target page not found");
+          }
         })
         .then(resp => {
-          setData(resp);
+          setDescription(resp);
           console.log(resp);
+        })
+        .catch(error => {
+          console.log(error);
         });
     }
-  });
+  }, [description, option]);
+
+  useEffect(() => {
+    const url2 = `http://localhost:3001/${description.name}?_page=${paginate.page}&_limit=${paginate.limit}`;
+    if (
+      data === null ||
+      data.page !== paginate.page ||
+      data.description !== description.name
+    ) {
+      fetch(url2, {
+        method: "GET"
+      })
+        .then(response => {
+          if (response.ok) {
+            setPaginate({
+              ...paginate,
+              ...{ total: response.headers.get("X-Total-Count") }
+            });
+            return response.json();
+          } else {
+            throw new Error("Target page not found.");
+          }
+        })
+        .then(resp => {
+          setData({
+            ...resp,
+            ...{ page: paginate.page },
+            ...{ description: description.name }
+          });
+          console.log(resp, "data url2 response");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+    console.log(paginate, "end");
+    console.log(data);
+  }, [description, paginate, data]);
 
   const handleButton = event => {
     if (option !== event.target.dataset.name) {
@@ -128,7 +183,10 @@ const WhoWeHelp = () => {
           Lokalnym zbiórkom
         </button>
       </div>
-      <p className={classes.whoWeHelp__description}>{data.desc}</p>
+      <p className={classes.whoWeHelp__description}>{description.desc}</p>
+      <div className={classes.whoWeHelp__list_box}>
+        <ul className={classes.whoWeHelp__list}></ul>
+      </div>
     </section>
   );
 };
