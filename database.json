@@ -1,117 +1,136 @@
 {
-  "fundations": [
+  "descriptions": [
     {
       "id": 1,
-      "name": "Fundacjom",
-      "desc": "W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.",
-      "items": [
-        {
-          "header": "Fundacja 1",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 2",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 3",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 4",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 5",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 6",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 7",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 8",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        },
-        {
-          "header": "Fundacja 9",
-          "subheader": "Czym się zajmuje fundacja",
-          "desc": "co można przekazać"
-        }
-      ]
+      "name": "fundations",
+      "desc": "W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują."
     },
     {
       "id": 2,
-      "name": "Organizacjom",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-      "items": [
-        {
-          "header": "Organizacja \"Lorem Ipsum 1\"",
-          "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-          "desc": "Egestas, sed, tempus "
-        },
-        {
-          "header": "Organizacja \"Lorem Ipsum 2\"",
-          "subheader": "Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.",
-          "desc": "Ut, aliquam, purus, sit, amet"
-        },
-        {
-          "header": "Organizacja \"Lorem Ipsum 3\"",
-          "subheader": "Scelerisque in dictum non consectetur a erat nam.",
-          "desc": "Mi, quis, hendrerit, dolor"
-        },
-        {
-          "header": "Organizacja \"Lorem Ipsum 4\"",
-          "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-          "desc": "Ut, aliquam, purus, sit, amet"
-        },
-        {
-          "header": "Organizacja \"Lorem Ipsum 5\"",
-          "subheader": "Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.",
-          "desc": "Egestas, sed, tempus "
-        },
-        {
-          "header": "Organizacja \"Lorem Ipsum 6\"",
-          "subheader": "Scelerisque in dictum non consectetur a erat nam.",
-          "desc": "Mi, quis, hendrerit, dolor"
-        }
-      ]
+      "name": "organizations",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
     },
     {
       "id": 3,
-      "name": "Lokalnym",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-      "items": [
-        {
-          "header": "Zbiórka \"Lorem Ipsum 1\"",
-          "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-          "desc": "Egestas, sed, tempus "
-        },
-        {
-          "header": "Zbiórka \"Lorem Ipsum 2\"",
-          "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-          "desc": "Egestas, sed, tempus "
-        },
-        {
-          "header": "Zbiórka \"Lorem Ipsum 3\"",
-          "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
-          "desc": "Egestas, sed, tempus "
-        }
-      ]
+      "name": "collections",
+      "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
     }
   ],
+  "fundations": [
+    {
+      "id": 1,
+      "header": "Fundacja 1",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 2,
+      "header": "Fundacja 2",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 3,
+      "header": "Fundacja 3",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 4,
+      "header": "Fundacja 4",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 5,
+      "header": "Fundacja 5",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 6,
+      "header": "Fundacja 6",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 7,
+      "header": "Fundacja 7",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 8,
+      "header": "Fundacja 8",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    },
+    {
+      "id": 9,
+      "header": "Fundacja 9",
+      "subheader": "Czym się zajmuje fundacja",
+      "desc": "co można przekazać"
+    }
+  ],
+  "organizations": [
+    {
+      "id": 1,
+      "header": "Organizacja \"Lorem Ipsum 1\"",
+      "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
+      "desc": "Egestas, sed, tempus "
+    },
+    {
+      "id": 2,
+      "header": "Organizacja \"Lorem Ipsum 2\"",
+      "subheader": "Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.",
+      "desc": "Ut, aliquam, purus, sit, amet"
+    },
+    {
+      "id": 3,
+      "header": "Organizacja \"Lorem Ipsum 3\"",
+      "subheader": "Scelerisque in dictum non consectetur a erat nam.",
+      "desc": "Mi, quis, hendrerit, dolor"
+    },
+    {
+      "id": 4,
+      "header": "Organizacja \"Lorem Ipsum 4\"",
+      "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
+      "desc": "Ut, aliquam, purus, sit, amet"
+    },
+    {
+      "id": 5,
+      "header": "Organizacja \"Lorem Ipsum 5\"",
+      "subheader": "Hendrerit gravida rutrum quisque non tellus orci ac auctor augue.",
+      "desc": "Egestas, sed, tempus "
+    },
+    {
+      "id": 6,
+      "header": "Organizacja \"Lorem Ipsum 6\"",
+      "subheader": "Scelerisque in dictum non consectetur a erat nam.",
+      "desc": "Mi, quis, hendrerit, dolor"
+    }
+  ],
+  "collections": [
+    {
+      "id": 1,
+      "header": "Zbiórka \"Lorem Ipsum 1\"",
+      "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
+      "desc": "Egestas, sed, tempus "
+    },
+    {
+      "id": 2,
+      "header": "Zbiórka \"Lorem Ipsum 2\"",
+      "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
+      "desc": "Egestas, sed, tempus "
+    },
+    {
+      "id": 3,
+      "header": "Zbiórka \"Lorem Ipsum 3\"",
+      "subheader": "Quis varius quam quisque id diam vel quam elementum pulvinar.",
+      "desc": "Egestas, sed, tempus "
+    }
+  ],
+
   "threeColumnsData": [
     {
       "number": "10",
