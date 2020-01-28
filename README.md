@@ -1,10 +1,31 @@
+# ODDAM W DOBRE RĘCE
+
+## IN GOOD HANDS
+
+This project was created as part of a portfolio project during a course at Coders Lab.
+This project will eventually act as a platform enabling the transfer of unnecessary items to foundations or organizations that may need them.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Technologies used in project
+
+- React,
+- React Router,
+- React Scroll,
+- CSS-in-JS
+
+### Packages used in project
+
+- react-scroll,
+- react-router-dom,
+- react-jss,
+- json-server
+
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,7 +33,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+#### `json-server --watch database.json`
+
+Runs a local json-server for this project using the database.json file.<br />
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+
+#### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
