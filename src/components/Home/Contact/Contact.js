@@ -100,6 +100,17 @@ const useStyles = createUseStyles({
     textAlign: "justify"
   },
 
+  contact__form_validate: {
+    fontSize: "0.75rem",
+    color: "red"
+  },
+  contact__form_validate_ok: {
+    fontSize: "0.75rem",
+    color: "green",
+    width: "100%",
+    textAlign: "center"
+  },
+
   contact__form_button: {
     backgroundColor: "transparent",
     border: `0.75px solid ${mainTextColor}`,
@@ -128,11 +139,98 @@ const Contact = () => {
     message: ""
   });
 
+  const [validate, setValidate] = useState({
+    response1: " ",
+    response2: " ",
+    name: " ",
+    email: " ",
+    message: " "
+  });
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log("submit");
+    var nameTest = /^[a-zA-Z]+$/;
+    // eslint-disable-next-line
+    var mailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const dataToSent = {};
+    const nameValid = nameTest.test(String(form.name));
+    const emailValid = mailTest.test(String(form.email).toLowerCase());
+    const messageValid = form.message.length >= 120;
+    console.log(nameValid, emailValid, messageValid);
+    if (nameValid) {
+      dataToSent.name = form.name;
+      setValidate({ ...validate, ...{ name: " " } });
+    } else {
+      setValidate({
+        ...validate,
+        ...{ name: "Podane imię jest nieprawidlowe!" }
+      });
+    }
+    if (emailValid) {
+      setValidate({ ...validate, ...{ email: " " } });
+      dataToSent.email = form.email;
+    } else {
+      setValidate({
+        ...validate,
+        ...{ email: "Podany email jest nieprawidłowy!" }
+      });
+    }
+    if (messageValid) {
+      setValidate({ ...validate, ...{ message: " " } });
+      dataToSent.message = form.message;
+    } else {
+      let messageVal = "Wiadomość musi mieć conajmniej 120 znaków!";
+      setValidate({ ...validate, ...{ message: messageVal } });
+    }
+    console.log(dataToSent);
+    if (messageValid && emailValid && messageValid) {
+      const url = `http://localhost:3001/contact/`;
+      // const url = "https://fer-api.coderslab.pl/v1/portfolio/contact";
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "aplication/json"
+        },
+        body: dataToSent
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Nieudana wysyłka formularza.");
+          }
+        })
+        .then(resp => {
+          console.log(resp);
+          setValidate({
+            ...validate,
+            ...{ response1: "Wiadomość została wysłana!" },
+            ...{ response2: "Wkrótce się skontaktujemy." }
+          });
+          setForm({
+            name: "",
+            email: "",
+            message: ""
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <section className={classes.contact} id="contact">
       <div className={classes.contact__main_content}>
         <h1 className={classes.contact__form_title}>Skontaktuj się z nami</h1>
         <div className={classes.contact__form_title_decoration} />
+        <div className={classes.contact__form_validate_ok}>
+          {validate.response1}
+        </div>
+        <div className={classes.contact__form_validate_ok}>
+          {validate.response2}
+        </div>
         <form className={classes.contact__form}>
           <div className={classes.contact__form_user_data}>
             <div className={classes.contact__form_user_data_box}>
@@ -148,6 +246,9 @@ const Contact = () => {
                   setForm({ ...form, ...{ name: event.target.value } });
                 }}
               />
+              <div className={classes.contact__form_validate}>
+                {validate.name}
+              </div>
             </div>
             <div className={classes.contact__form_user_data_box}>
               <label className={classes.contact__form_label}>
@@ -162,6 +263,9 @@ const Contact = () => {
                   setForm({ ...form, ...{ email: event.target.value } });
                 }}
               />
+              <div className={classes.contact__form_validate}>
+                {validate.email}
+              </div>
             </div>
           </div>
           <div className={classes.contact__form_user_message}>
@@ -179,10 +283,26 @@ const Contact = () => {
               placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt eos sapiente, sequi reiciendis soluta tenetur odio. Commodi totam eos tempora iste optio officiis sed, similique aliquid itaque. Possimus, libero rem?"
               onChange={event => {
                 setForm({ ...form, ...{ message: event.target.value } });
+                if (event.target.value.length < 120) {
+                  let messageVal = `Pozostało ${120 -
+                    event.target.value.length} znaków do wymaganego minimum`;
+                  setValidate({ ...validate, ...{ message: messageVal } });
+                } else {
+                  let messageVal = " ";
+                  setValidate({ ...validate, ...{ message: messageVal } });
+                }
               }}
             />
+            <div className={classes.contact__form_validate}>
+              {validate.message}
+            </div>
           </div>
-          <button className={classes.contact__form_button}>Wyślij</button>
+          <button
+            className={classes.contact__form_button}
+            onClick={handleSubmit}
+          >
+            Wyślij
+          </button>
         </form>
       </div>
       <Footer specialClass={classes.contact__footer} />
