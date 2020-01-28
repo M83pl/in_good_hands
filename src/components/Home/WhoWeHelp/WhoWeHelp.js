@@ -263,7 +263,15 @@ const WhoWeHelp = () => {
     const pagesCount = Math.ceil(paginate.total / 3);
     if (pagesCount <= 1) {
       console.log("tylko jedna strona");
-      setButtons("");
+      let extender = () => {
+        return (
+          <button id="1" className={classes.whoWeHelp__pagination_button}>
+            {" "}
+          </button>
+        );
+      };
+
+      setButtons(extender);
     } else {
       console.log("wiecej stron: ", pagesCount);
       let buttons = [];
