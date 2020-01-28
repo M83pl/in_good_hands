@@ -6,6 +6,7 @@ import {
 } from "../../../scss/settings/colors";
 import decoration from "../../../assets/Decoration.svg";
 
+// component styles
 const useStyles = createUseStyles({
   whoWeHelp: {
     width: "100%",
@@ -59,25 +60,80 @@ const useStyles = createUseStyles({
   whoWeHelp__description: {
     padding: "0 18vw",
     textAlign: "justify"
+  },
+
+  whoWeHelp__list_item: {
+    borderBottom: `0.75px solid ${mainTextColor}`,
+    padding: "0.8rem 0",
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+
+  whoWeHelp__list_item_header: {
+    fontSize: "1.25rem",
+    paddingBottom: "0.25rem"
+  },
+  whoWeHelp__list_item_subheader: {
+    fontSize: "0.8rem",
+    fontFamily: "Merriweather"
+  },
+  whoWeHelp__list_item_desc: {
+    fontSize: "0.8rem",
+    fontFamily: "Merriweather"
+  },
+
+  whoWeHelp__list_item_no_border: {
+    border: "none"
+  },
+
+  whoWeHelp__pagination_buttons: {
+    paddingTop: "0.5rem",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  whoWeHelp__pagination_button: {
+    background: "none",
+    border: "none",
+    margin: "0.5rem 1rem",
+    padding: "1rem",
+    textAlign: "center",
+    width: "3rem",
+
+    "&:hover": {
+      border: `2px solid ${threeColumnsBackground}`
+    }
+  },
+  whoWeHelp__pagination_button_active: {
+    border: `0.75px solid ${mainTextColor}`
   }
 });
+
 const WhoWeHelp = () => {
-  const classes = useStyles();
+  const classes = useStyles(); //assigning styles to a variable
 
   const [description, setDescription] = useState({
     id: 0,
     name: " ",
-    desc: " "
+    desc: "Wczytuję opis..."
   });
   const [option, setOption] = useState(1);
   const [paginate, setPaginate] = useState({
     page: 1,
     limit: 3,
     total: 0,
-    couter: 0
+    counter: 0
   });
+  const [currPage, setCurrPage] = useState(1);
   const [data, setData] = useState(null);
+  const [list, setList] = useState();
+  const [buttons, setButtons] = useState(null);
 
+  //download description for a given category, every time description or option changes
   useEffect(() => {
     const url1 = `http://localhost:3001/descriptions/${option}`;
 
@@ -92,7 +148,6 @@ const WhoWeHelp = () => {
         })
         .then(resp => {
           setDescription(resp);
-          console.log(resp);
         })
         .catch(error => {
           console.log(error);
@@ -100,12 +155,13 @@ const WhoWeHelp = () => {
     }
   }, [description, option]);
 
+  //downloading data to display in the list, works on description, paginate, data or currPage change
   useEffect(() => {
     const url2 = `http://localhost:3001/${description.name}?_page=${paginate.page}&_limit=${paginate.limit}`;
     if (
       data === null ||
-      data.page !== paginate.page ||
-      data.description !== description.name
+      currPage.page !== paginate.page ||
+      currPage.description !== description.name
     ) {
       fetch(url2, {
         method: "GET"
@@ -122,24 +178,121 @@ const WhoWeHelp = () => {
           }
         })
         .then(resp => {
-          setData({
-            ...resp,
+          setData(resp);
+          setCurrPage({
             ...{ page: paginate.page },
             ...{ description: description.name }
           });
-          console.log(resp, "data url2 response");
         })
         .catch(error => {
           console.log(error);
         });
     }
-    console.log(paginate, "end");
-    console.log(data);
-  }, [description, paginate, data]);
+  }, [description, paginate, data, currPage]);
 
+  //update to state with list. works every time data changes
+  useEffect(() => {
+    if (data !== null) {
+      setList(
+        data.map((item, index) => {
+          if (index < data.length - 1) {
+            return (
+              <li key={index} className={classes.whoWeHelp__list_item}>
+                <div>
+                  <div className={classes.whoWeHelp__list_item_header}>
+                    {item.header}
+                  </div>
+                  <div className={classes.whoWeHelp__list_item_subheader}>
+                    {item.subheader}
+                  </div>
+                </div>
+                <div className={classes.whoWeHelp__list_item_desc}>
+                  {item.desc}
+                </div>
+              </li>
+            );
+          } else {
+            return (
+              <li
+                key={index}
+                className={
+                  classes.whoWeHelp__list_item +
+                  " " +
+                  classes.whoWeHelp__list_item_no_border
+                }
+              >
+                <div>
+                  <div className={classes.whoWeHelp__list_item_header}>
+                    {item.header}
+                  </div>
+                  <div className={classes.whoWeHelp__list_item_subheader}>
+                    {item.subheader}
+                  </div>
+                </div>
+                <div className={classes.whoWeHelp__list_item_desc}>
+                  {item.desc}
+                </div>
+              </li>
+            );
+          }
+        })
+      );
+    }
+  }, [data, classes]);
+
+  //update to state with paginate buttons. works every time paginate changes
+  useEffect(() => {
+    // handle page select
+    const handlePage = event => {
+      if (paginate.page !== event.target.id) {
+        setPaginate({ ...paginate, ...{ page: event.target.id } });
+        const currentButton = document.getElementsByClassName(
+          `${classes.whoWeHelp__pagination_button_active}`
+        );
+        currentButton[0].className = currentButton[0].className.replace(
+          ` ${classes.whoWeHelp__pagination_button_active}`,
+          ""
+        );
+        event.target.className += ` ${classes.whoWeHelp__pagination_button_active}`;
+      } else {
+        return null;
+      }
+    };
+
+    // paginate buttons render
+    const pagesCount = Math.ceil(paginate.total / 3);
+    if (pagesCount <= 1) {
+      console.log("tylko jedna strona");
+      setButtons("");
+    } else {
+      console.log("wiecej stron: ", pagesCount);
+      let buttons = [];
+      for (let i = 1; i <= pagesCount; i++) {
+        let buttonClass = "";
+        if (i === paginate.page) {
+          buttonClass =
+            classes.whoWeHelp__pagination_button +
+            " " +
+            classes.whoWeHelp__pagination_button_active;
+        } else {
+          buttonClass = classes.whoWeHelp__pagination_button;
+        }
+        buttons.push(
+          <button key={i} id={i} onClick={handlePage} className={buttonClass}>
+            {i}
+          </button>
+        );
+      }
+      console.log(buttons);
+      setButtons(buttons);
+    }
+  }, [data, paginate, classes]);
+
+  // handle cathegory select
   const handleButton = event => {
     if (option !== event.target.dataset.name) {
       setOption(parseInt(event.target.id));
+      setPaginate({ ...paginate, ...{ page: 1 } });
       const currentButton = document.getElementsByClassName(
         `${classes.whoWeHelp__button_active}`
       );
@@ -184,9 +337,8 @@ const WhoWeHelp = () => {
         </button>
       </div>
       <p className={classes.whoWeHelp__description}>{description.desc}</p>
-      <div className={classes.whoWeHelp__list_box}>
-        <ul className={classes.whoWeHelp__list}></ul>
-      </div>
+      <ul>{list}</ul>
+      <div className={classes.whoWeHelp__pagination_buttons}>{buttons}</div>
     </section>
   );
 };
