@@ -153,38 +153,45 @@ const Contact = () => {
     var nameTest = /^[a-zA-Z]+$/;
     // eslint-disable-next-line
     var mailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const dataToSent = {};
-    const nameValid = nameTest.test(String(form.name));
+    const dataToSend = { name: "", email: "", message: "" };
+    let val = { name: "", email: "", message: "" };
+    const nameValid = nameTest.test(String(form.name.trim()));
     const emailValid = mailTest.test(String(form.email).toLowerCase());
     const messageValid = form.message.length >= 120;
     console.log(nameValid, emailValid, messageValid);
     if (nameValid) {
-      dataToSent.name = form.name;
-      setValidate({ ...validate, ...{ name: " " } });
+      dataToSend.name = form.name.trim();
+      console.log(dataToSend);
+      val = { ...val, ...{ name: " " } };
     } else {
-      setValidate({
-        ...validate,
-        ...{ name: "Podane imię jest nieprawidlowe!" }
-      });
+      val = {
+        ...val,
+        ...{
+          name: "Podane jedno imię."
+        }
+      };
     }
     if (emailValid) {
-      setValidate({ ...validate, ...{ email: " " } });
-      dataToSent.email = form.email;
+      val = { ...val, ...{ email: " " } };
+      dataToSend.email = form.email;
+      console.log(dataToSend);
     } else {
-      setValidate({
-        ...validate,
-        ...{ email: "Podany email jest nieprawidłowy!" }
-      });
+      val = { ...val, ...{ email: "Podany email jest nieprawidłowy!" } };
     }
     if (messageValid) {
-      setValidate({ ...validate, ...{ message: " " } });
-      dataToSent.message = form.message;
+      val = { ...val, ...{ message: " " } };
+      dataToSend.message = form.message;
+      console.log(dataToSend);
     } else {
       let messageVal = "Wiadomość musi mieć conajmniej 120 znaków!";
-      setValidate({ ...validate, ...{ message: messageVal } });
+      val = { ...val, ...{ message: messageVal } };
     }
-    console.log(dataToSent);
-    if (messageValid && emailValid && messageValid) {
+    console.log("validate responses: ", val);
+    console.log("data to send before json: ", dataToSend);
+    console.log("data to send after json: ", JSON.stringify(dataToSend));
+    setValidate({ ...validate, ...val });
+
+    if (nameValid && emailValid && messageValid) {
       const url = `http://localhost:3001/contact/`;
       // const url = "https://fer-api.coderslab.pl/v1/portfolio/contact";
       fetch(url, {
@@ -192,7 +199,7 @@ const Contact = () => {
         headers: {
           "Content-Type": "aplication/json"
         },
-        body: dataToSent
+        body: JSON.stringify(dataToSend)
       })
         .then(response => {
           if (response.ok) {
@@ -202,7 +209,7 @@ const Contact = () => {
           }
         })
         .then(resp => {
-          console.log(resp);
+          console.log(resp, "po json");
           setValidate({
             ...validate,
             ...{ response1: "Wiadomość została wysłana!" },
