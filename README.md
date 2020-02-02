@@ -16,10 +16,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Packages used in project
 
-- react-scroll,
-- react-router-dom,
-- react-jss,
-- json-server
+- `react-scroll`,
+- `react-router-dom`,
+- `react-jss` for styles,
+- `json-server` for fake REST API for the project
 
 ### Available Scripts
 
@@ -33,10 +33,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-#### `json-server --watch database.json`
+#### `json-server --watch db.json`
 
 Runs a local json-server for this project using the database.json file.<br />
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser. If You want o change port from 3001 to any else, just edit json-server.json file.
 
 #### `npm test`
 
