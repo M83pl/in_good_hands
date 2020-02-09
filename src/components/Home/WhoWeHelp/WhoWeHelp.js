@@ -188,6 +188,7 @@ function WhoWeHelp() {
   // download description for a given cathegory
   useEffect(() => {
     cathegoryFetch(page.cathegoryId);
+    // eslint-disable-next-line
   }, [page.cathegoryId]);
 
   // download data to display in the list
@@ -195,6 +196,7 @@ function WhoWeHelp() {
     if (page.cathegoryDesc !== "Wczytuję opis...") {
       dataFetch();
     }
+    // eslint-disable-next-line
   }, [page.cathegoryName, page.cathegoryDesc, page.number]);
 
   // handle cathegory select
@@ -319,7 +321,8 @@ function WhoWeHelp() {
       }
       setButtons(buttons);
     }
-  }, [page.number, page.total]);
+    // eslint-disable-next-line
+  }, [page.number, page.total, classes]);
 
   return (
     <section className={classes.whoWeHelp} id="funds_orgs">
