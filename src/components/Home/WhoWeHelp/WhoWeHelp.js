@@ -113,86 +113,132 @@ const useStyles = createUseStyles({
   }
 });
 
-const WhoWeHelp = () => {
-  const classes = useStyles(); //assigning styles to a variable
+function WhoWeHelp() {
+  // assigning styles to a variable
+  const classes = useStyles();
 
-  const [description, setDescription] = useState({
-    id: 0,
-    name: " ",
-    desc: "Wczytuję opis..."
-  });
-  const [option, setOption] = useState(1);
-  const [paginate, setPaginate] = useState({
-    page: 1,
+  // setting some states to component
+  const [page, setPage] = useState({
+    cathegoryId: 1,
+    cathegoryName: "fundations",
+    cathegoryDesc: "Wczytuję opis...",
+    number: 1,
     limit: 3,
     total: 0,
     counter: 0
   });
-  const [currPage, setCurrPage] = useState(1);
   const [data, setData] = useState(null);
-  const [list, setList] = useState();
+  const [list, setList] = useState(null);
   const [buttons, setButtons] = useState(null);
 
-  //download description for a given category, every time description or option changes
-  useEffect(() => {
-    const url1 = `http://localhost:3001/descriptions/${option}`;
-
-    if (description.id !== option) {
-      fetch(url1, {})
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("Target page not found");
-          }
-        })
-        .then(resp => {
-          setDescription(resp);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  }, [description, option]);
-
-  //downloading data to display in the list, works on description, paginate, data or currPage change
-  useEffect(() => {
-    const url2 = `http://localhost:3001/${description.name}?_page=${paginate.page}&_limit=${paginate.limit}`;
-    if (
-      data === null ||
-      currPage.page !== paginate.page ||
-      currPage.description !== description.name
-    ) {
-      fetch(url2, {
-        method: "GET"
+  function cathegoryFetch(target) {
+    console.log(`cathegory fetch...`);
+    const cathegoryUrl = `http://localhost:3001/descriptions/${target}`;
+    fetch(cathegoryUrl)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Target page not found");
+        }
       })
-        .then(response => {
-          if (response.ok) {
-            setPaginate({
-              ...paginate,
-              ...{ total: response.headers.get("X-Total-Count") }
-            });
-            return response.json();
-          } else {
-            throw new Error("Target page not found.");
+      .then(resp => {
+        setPage({
+          ...page,
+          ...{
+            cathegoryId: resp.id,
+            cathegoryName: resp.name,
+            cathegoryDesc: resp.desc
           }
-        })
-        .then(resp => {
-          setData(resp);
-          setCurrPage({
-            ...{ page: paginate.page },
-            ...{ description: description.name }
-          });
-        })
-        .catch(error => {
-          console.log(error);
         });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  function dataFetch() {
+    const dataUrl = `http://localhost:3001/${page.cathegoryName}?_page=${page.number}&_limit=${page.limit}`;
+    // const url2 = `https://my-json-server.typicode.com/M83pl/in_good_hands/blob/master/${description.name}?_page=${paginate.page}&_limit=${paginate.limit}`;
+    console.log("data fetch... ");
+
+    fetch(dataUrl, {
+      method: "GET"
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log("data total");
+          setPage({
+            ...page,
+            ...{ total: response.headers.get("X-Total-Count") }
+          });
+          return response.json();
+        } else {
+          throw new Error("Target page not found.");
+        }
+      })
+      .then(resp => {
+        setData(resp);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  // download description for a given cathegory
+  useEffect(() => {
+    cathegoryFetch(page.cathegoryId);
+  }, [page.cathegoryId]);
+
+  // download data to display in the list
+  useEffect(() => {
+    if (page.cathegoryDesc !== "Wczytuję opis...") {
+      dataFetch();
     }
-  }, [description, paginate, data, currPage]);
+  }, [page.cathegoryName, page.cathegoryDesc, page.number]);
+
+  // handle cathegory select
+  const handleCathegory = event => {
+    if (page.cathegoryId !== parseInt(event.target.id)) {
+      console.log(
+        "cathegory changed from " +
+          page.cathegoryId +
+          " to " +
+          parseInt(event.target.id)
+      );
+      setPage({
+        ...page,
+        ...{ cathegoryId: parseInt(event.target.id), number: 1 }
+      });
+      const currentButton = document.getElementsByClassName(
+        `${classes.whoWeHelp__button_active}`
+      );
+      currentButton[0].className = currentButton[0].className.replace(
+        ` ${classes.whoWeHelp__button_active}`,
+        ""
+      );
+      event.target.className += ` ${classes.whoWeHelp__button_active}`;
+    } else {
+      return null;
+    }
+  };
+
+  // handle page select
+  const handlePage = event => {
+    if (page.number !== event.target.id) {
+      console.log("page select");
+      setPage({ ...page, ...{ number: event.target.id } });
+    } else {
+      return null;
+    }
+  };
+
+  useEffect(() => console.log(page.total), [page.total]);
 
   //update to state with list. works every time data changes
   useEffect(() => {
     if (data !== null) {
+      console.log("list generation...");
       setList(
         data.map((item, index) => {
           if (index < data.length - 1) {
@@ -242,27 +288,9 @@ const WhoWeHelp = () => {
 
   //update to state with paginate buttons. works every time paginate changes
   useEffect(() => {
-    // handle page select
-    const handlePage = event => {
-      if (paginate.page !== event.target.id) {
-        setPaginate({ ...paginate, ...{ page: event.target.id } });
-        const currentButton = document.getElementsByClassName(
-          `${classes.whoWeHelp__pagination_button_active}`
-        );
-        currentButton[0].className = currentButton[0].className.replace(
-          ` ${classes.whoWeHelp__pagination_button_active}`,
-          ""
-        );
-        event.target.className += ` ${classes.whoWeHelp__pagination_button_active}`;
-      } else {
-        return null;
-      }
-    };
-
     // paginate buttons render
-    const pagesCount = Math.ceil(paginate.total / 3);
+    const pagesCount = Math.ceil(page.total / 3);
     if (pagesCount <= 1) {
-      console.log("tylko jedna strona");
       let extender = () => {
         return (
           <button id="1" className={classes.whoWeHelp__pagination_button}>
@@ -270,14 +298,12 @@ const WhoWeHelp = () => {
           </button>
         );
       };
-
       setButtons(extender);
     } else {
-      console.log("wiecej stron: ", pagesCount);
       let buttons = [];
       for (let i = 1; i <= pagesCount; i++) {
         let buttonClass = "";
-        if (i === paginate.page) {
+        if (i === page.number) {
           buttonClass =
             classes.whoWeHelp__pagination_button +
             " " +
@@ -291,28 +317,9 @@ const WhoWeHelp = () => {
           </button>
         );
       }
-      console.log(buttons);
       setButtons(buttons);
     }
-  }, [data, paginate, classes]);
-
-  // handle cathegory select
-  const handleButton = event => {
-    if (option !== event.target.dataset.name) {
-      setOption(parseInt(event.target.id));
-      setPaginate({ ...paginate, ...{ page: 1 } });
-      const currentButton = document.getElementsByClassName(
-        `${classes.whoWeHelp__button_active}`
-      );
-      currentButton[0].className = currentButton[0].className.replace(
-        ` ${classes.whoWeHelp__button_active}`,
-        ""
-      );
-      event.target.className += ` ${classes.whoWeHelp__button_active}`;
-    } else {
-      return null;
-    }
-  };
+  }, [page.number, page.total]);
 
   return (
     <section className={classes.whoWeHelp} id="funds_orgs">
@@ -323,7 +330,7 @@ const WhoWeHelp = () => {
           id="1"
           className={`${classes.whoWeHelp__button} ${classes.whoWeHelp__button_active}`}
           data-name="Fundacjom"
-          onClick={handleButton}
+          onClick={handleCathegory}
         >
           Fundacjom
         </button>
@@ -331,7 +338,7 @@ const WhoWeHelp = () => {
           id="2"
           className={classes.whoWeHelp__button}
           data-name="Organizacjom"
-          onClick={handleButton}
+          onClick={handleCathegory}
         >
           Organizacjom pozarządowym
         </button>
@@ -339,16 +346,16 @@ const WhoWeHelp = () => {
           id="3"
           className={classes.whoWeHelp__button}
           data-name="Lokalnym"
-          onClick={handleButton}
+          onClick={handleCathegory}
         >
           Lokalnym zbiórkom
         </button>
       </div>
-      <p className={classes.whoWeHelp__description}>{description.desc}</p>
+      <p className={classes.whoWeHelp__description}>{page.cathegoryDesc}</p>
       <ul>{list}</ul>
       <div className={classes.whoWeHelp__pagination_buttons}>{buttons}</div>
     </section>
   );
-};
+}
 
 export default WhoWeHelp;
