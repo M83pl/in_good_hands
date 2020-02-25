@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
+import WhoWeHelpList from "./WhoWeHelpList";
 import {
   mainTextColor,
   threeColumnsBackground
@@ -60,56 +61,6 @@ const useStyles = createUseStyles({
   whoWeHelp__description: {
     padding: "0 18vw",
     textAlign: "justify"
-  },
-
-  whoWeHelp__list_item: {
-    borderBottom: `0.75px solid ${mainTextColor}`,
-    padding: "0.8rem 0",
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-
-  whoWeHelp__list_item_header: {
-    fontSize: "1.25rem",
-    paddingBottom: "0.25rem"
-  },
-  whoWeHelp__list_item_subheader: {
-    fontSize: "0.8rem",
-    fontFamily: "Merriweather"
-  },
-  whoWeHelp__list_item_desc: {
-    fontSize: "0.8rem",
-    fontFamily: "Merriweather"
-  },
-
-  whoWeHelp__list_item_no_border: {
-    border: "none"
-  },
-
-  whoWeHelp__pagination_buttons: {
-    paddingTop: "0.5rem",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-
-  whoWeHelp__pagination_button: {
-    background: "none",
-    border: "none",
-    margin: "0.5rem 1rem",
-    padding: "1rem",
-    textAlign: "center",
-    width: "3rem",
-
-    "&:hover": {
-      border: `2px solid ${threeColumnsBackground}`
-    }
-  },
-  whoWeHelp__pagination_button_active: {
-    border: `0.75px solid ${mainTextColor}`
   }
 });
 
@@ -127,9 +78,6 @@ function WhoWeHelp() {
     total: 0,
     counter: 0
   });
-  const [data, setData] = useState(null);
-  const [list, setList] = useState(null);
-  const [buttons, setButtons] = useState(null);
 
   function cathegoryFetch(target) {
     console.log(`cathegory fetch...`);
@@ -157,47 +105,11 @@ function WhoWeHelp() {
       });
   }
 
-  function dataFetch() {
-    const dataUrl = `http://localhost:3001/${page.cathegoryName}?_page=${page.number}&_limit=${page.limit}`;
-    // const url2 = `https://my-json-server.typicode.com/M83pl/in_good_hands/blob/master/${description.name}?_page=${paginate.page}&_limit=${paginate.limit}`;
-    console.log("data fetch... ");
-
-    fetch(dataUrl, {
-      method: "GET"
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log("data total");
-          setPage({
-            ...page,
-            ...{ total: response.headers.get("X-Total-Count") }
-          });
-          return response.json();
-        } else {
-          throw new Error("Target page not found.");
-        }
-      })
-      .then(resp => {
-        setData(resp);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   // download description for a given cathegory
   useEffect(() => {
     cathegoryFetch(page.cathegoryId);
     // eslint-disable-next-line
   }, [page.cathegoryId]);
-
-  // download data to display in the list
-  useEffect(() => {
-    if (page.cathegoryDesc !== "Wczytuję opis...") {
-      dataFetch();
-    }
-    // eslint-disable-next-line
-  }, [page.cathegoryName, page.cathegoryDesc, page.number]);
 
   // handle cathegory select
   const handleCathegory = event => {
@@ -224,105 +136,6 @@ function WhoWeHelp() {
       return null;
     }
   };
-
-  // handle page select
-  const handlePage = event => {
-    if (page.number !== event.target.id) {
-      console.log("page select");
-      setPage({ ...page, ...{ number: event.target.id } });
-    } else {
-      return null;
-    }
-  };
-
-  useEffect(() => console.log(page.total), [page.total]);
-
-  //update to state with list. works every time data changes
-  useEffect(() => {
-    if (data !== null) {
-      console.log("list generation...");
-      setList(
-        data.map((item, index) => {
-          if (index < data.length - 1) {
-            return (
-              <li key={index} className={classes.whoWeHelp__list_item}>
-                <div>
-                  <div className={classes.whoWeHelp__list_item_header}>
-                    {item.header}
-                  </div>
-                  <div className={classes.whoWeHelp__list_item_subheader}>
-                    {item.subheader}
-                  </div>
-                </div>
-                <div className={classes.whoWeHelp__list_item_desc}>
-                  {item.desc}
-                </div>
-              </li>
-            );
-          } else {
-            return (
-              <li
-                key={index}
-                className={
-                  classes.whoWeHelp__list_item +
-                  " " +
-                  classes.whoWeHelp__list_item_no_border
-                }
-              >
-                <div>
-                  <div className={classes.whoWeHelp__list_item_header}>
-                    {item.header}
-                  </div>
-                  <div className={classes.whoWeHelp__list_item_subheader}>
-                    {item.subheader}
-                  </div>
-                </div>
-                <div className={classes.whoWeHelp__list_item_desc}>
-                  {item.desc}
-                </div>
-              </li>
-            );
-          }
-        })
-      );
-    }
-  }, [data, classes]);
-
-  //update to state with paginate buttons. works every time paginate changes
-  useEffect(() => {
-    // paginate buttons render
-    const pagesCount = Math.ceil(page.total / 3);
-    if (pagesCount <= 1) {
-      let extender = () => {
-        return (
-          <button id="1" className={classes.whoWeHelp__pagination_button}>
-            {" "}
-          </button>
-        );
-      };
-      setButtons(extender);
-    } else {
-      let buttons = [];
-      for (let i = 1; i <= pagesCount; i++) {
-        let buttonClass = "";
-        if (i === page.number) {
-          buttonClass =
-            classes.whoWeHelp__pagination_button +
-            " " +
-            classes.whoWeHelp__pagination_button_active;
-        } else {
-          buttonClass = classes.whoWeHelp__pagination_button;
-        }
-        buttons.push(
-          <button key={i} id={i} onClick={handlePage} className={buttonClass}>
-            {i}
-          </button>
-        );
-      }
-      setButtons(buttons);
-    }
-    // eslint-disable-next-line
-  }, [page.number, page.total, classes]);
 
   return (
     <section className={classes.whoWeHelp} id="funds_orgs">
@@ -355,8 +168,10 @@ function WhoWeHelp() {
         </button>
       </div>
       <p className={classes.whoWeHelp__description}>{page.cathegoryDesc}</p>
-      <ul>{list}</ul>
-      <div className={classes.whoWeHelp__pagination_buttons}>{buttons}</div>
+      <WhoWeHelpList
+        cathegoryName={page.cathegoryName}
+        pageNumber={page.number}
+      />
     </section>
   );
 }
